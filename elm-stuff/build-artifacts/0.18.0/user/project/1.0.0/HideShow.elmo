@@ -1,0 +1,109 @@
+var _user$project$HideShow$button1 = {height: 20, width: 20};
+var _user$project$HideShow$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		return _elm_lang$core$Native_Utils.eq(model.buttonText, '-') ? _elm_lang$core$Native_Utils.update(
+			model,
+			{width: _user$project$HideShow$button1.width + 10, height: _user$project$HideShow$button1.height + 10, buttonText: '+'}) : _elm_lang$core$Native_Utils.update(
+			model,
+			{width: 200, height: 200, buttonText: '-'});
+	});
+var _user$project$HideShow$model = {height: 200, width: 200, buttonText: '-'};
+var _user$project$HideShow$Model = F3(
+	function (a, b, c) {
+		return {height: a, width: b, buttonText: c};
+	});
+var _user$project$HideShow$ButtonType = F2(
+	function (a, b) {
+		return {height: a, width: b};
+	});
+var _user$project$HideShow$Toggle = {ctor: 'Toggle'};
+var _user$project$HideShow$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'red'},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 'height',
+							_1: A2(
+								_elm_lang$core$Basics_ops['++'],
+								_elm_lang$core$Basics$toString(model.height),
+								'px')
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'width',
+								_1: A2(
+									_elm_lang$core$Basics_ops['++'],
+									_elm_lang$core$Basics$toString(model.width),
+									'px')
+							},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'margin', _1: '5px'},
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$button,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'height',
+								_1: A2(
+									_elm_lang$core$Basics_ops['++'],
+									_elm_lang$core$Basics$toString(_user$project$HideShow$button1.height),
+									'px')
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 'width',
+									_1: A2(
+										_elm_lang$core$Basics_ops['++'],
+										_elm_lang$core$Basics$toString(_user$project$HideShow$button1.width),
+										'px')
+								},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'margin', _1: '4px'},
+									_1: {ctor: '[]'}
+								}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Events$onClick(_user$project$HideShow$Toggle),
+						_1: {ctor: '[]'}
+					}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(model.buttonText),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$HideShow$main = _elm_lang$html$Html$beginnerProgram(
+	{model: _user$project$HideShow$model, view: _user$project$HideShow$view, update: _user$project$HideShow$update})();
