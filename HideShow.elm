@@ -13,46 +13,53 @@ main =
 
 -- MODEL
 
-type alias Model = { height : Int, width: Int, buttonText : String }
-type alias ButtonType = {height : Int, width: Int}
+type alias Model = { displayPanel : Bool }
 
 model : Model
-model = { height = 200, width = 200, buttonText = "-" }
-
-button1 : ButtonType
-button1 = { height = 20, width = 20 }
+model = { displayPanel = False }
 
 -- UPDATE
 
-type Msg = Toggle
+type Msg = Expand | Collapse
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        Toggle ->
-          if model.buttonText == "-" then
-            {model | width = button1.width+10, height = button1.height+10, buttonText = "+" }
-
-          else
-            {model | width = 200, height = 200, buttonText = "-"}
+        Collapse ->
+          {model | displayPanel = False }
+        Expand ->
+          {model | displayPanel = True }
 
 -- VIEW
 
 view : Model -> Html Msg
 view model =
-    div [
-      style
-        [ ("background-color", "red")
-        , ("height", toString model.height ++ "px")
-        , ("width", toString model.width ++ "px")
-        , ("margin", "5px") ]
-        ]
-      [ button
+  if model.displayPanel then
+    div []
+      [ div
         [ style
-          [ ("height", toString button1.height ++ "px")
-          , ("width", toString button1.width ++ "px")
-          , ("margin", "4px")
+          [("border-style", "solid")
+          , ("border-color", "black")
           ]
-        , onClick Toggle
-        ] [ text model.buttonText]
+        ]
+        [ button [ onClick Collapse ] [ text "-" ]
+        , text "Profile Info"
+        ],
+      div []
+        [ input [ type_ "text", placeholder "First Name" ] []
+        , input [ type_ "text", placeholder "Last Name" ] []
+        , button [] [ text "Submit" ]
+      ]
     ]
+  else
+      div []
+        [ div
+          [ style
+            [("border-style", "solid")
+            , ("border-color", "black")
+            ]
+          ]
+          [ button [ onClick Expand ] [ text "+" ]
+          , text "Profile Info"
+          ]
+        ]
